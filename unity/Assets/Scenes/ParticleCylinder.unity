@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465934, g: 0.49642956, b: 0.5748249, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -122,15 +122,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4534327661505462, guid: d7855b896b27b4cd7af294c458701158, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -3.0294719
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4534327661505462, guid: d7855b896b27b4cd7af294c458701158, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -3.5840554
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4534327661505462, guid: d7855b896b27b4cd7af294c458701158, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -4.944365
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4534327661505462, guid: d7855b896b27b4cd7af294c458701158, type: 2}
       propertyPath: m_LocalRotation.x
@@ -157,11 +157,11 @@ Prefab:
       propertyPath: LightsModule.light
       value: 
       objectReference: {fileID: 1080155573}
-    - target: {fileID: 23466103971275626, guid: d7855b896b27b4cd7af294c458701158,
+    - target: {fileID: 82074002965987826, guid: d7855b896b27b4cd7af294c458701158,
         type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 3bd8f1e4ffde24007bb5ccee44eefc29, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7855b896b27b4cd7af294c458701158, type: 2}
   m_IsPrefabAsset: 0
