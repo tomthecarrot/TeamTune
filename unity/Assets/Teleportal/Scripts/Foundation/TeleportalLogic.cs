@@ -139,31 +139,28 @@ public class TeleportalLogic : MonoBehaviour {
     public void LocationOriginUser(List<string> args) {
         // Get values
         string latI = args[1];
-        string posY = args[2];
-        string lonI = args[3];
+        string lonI = args[2];
 
         // Send to game
-        TeleportalGps.Shared.LocationOrigin(latI, posY, lonI);
+        TeleportalGps.Shared.LocationOrigin(latI, lonI);
     }
 
     public void LocationOriginArea(List<string> args) {
-        // Get values
+        // Store game lat/lon
         double lat = double.Parse(args[1]);
-        double posY = double.Parse(args[2]);
-        double lon = double.Parse(args[3]);
+        double lon = double.Parse(args[2]);
         
         // Set as this user's origin location also
-        TeleportalGps.Shared.ReportOriginLoc(lat, posY, lon);
+        TeleportalGps.Shared.ReportOriginLoc(lat, lon);
     }
 
     public void LocationSync(List<string> args) {
         // Get values
         string latI = args[1];
-        string posYI = args[2];
-        string lonI = args[3];
+        string lonI = args[2];
 
         // Send to game
-        TeleportalGps.Shared.SyncUserLocationDelayed(latI, posYI, lonI);
+        TeleportalGps.Shared.SyncUserLocationDelayed(latI, lonI);
     }
 
     public void LocationTrackingReset(List<string> args) {
@@ -183,12 +180,11 @@ public class TeleportalLogic : MonoBehaviour {
         // Get values
         string username = args[1];
         string latitude = args[2];
-        string posY = args[3];
-        string longitude = args[4];
-        string heading = args[5];
+        string longitude = args[3];
+        string heading = args[4];
 
         // Send to game
-        TeleportalAr.Shared.UserLocated(username, latitude, posY, longitude, heading);
+        TeleportalAr.Shared.UserLocated(username, latitude, longitude, heading);
     }
 
     public void ItemAdd(List<string> args) {
@@ -197,13 +193,12 @@ public class TeleportalLogic : MonoBehaviour {
         string id = args[2];
         string name = args[3];
         double lat = double.Parse(args[4]);
-        double posY = double.Parse(args[5]);
-        double lon = double.Parse(args[6]);
-        double heading = double.Parse(args[7]);
-        double pitch = double.Parse(args[8]);
+        double lon = double.Parse(args[5]);
+        double heading = double.Parse(args[6]);
+        double pitch = double.Parse(args[7]);
 
         // Send to AR
-        TeleportalAr.Shared.AddItem(type, id, lat, posY, lon, heading, pitch);
+        TeleportalAr.Shared.AddItem(type, id, lat, lon, heading, pitch);
     }
 
     public void ItemDelete(List<string> args) {

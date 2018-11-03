@@ -18,7 +18,11 @@ public class XRWorldItem: XRItem {
   /// </summary>
   public static int NextId = 0;
 
-  private void CustomItemTypeLogic() {
+  public void Awake() {
+      TeleportalActions.Shared.OnLocationLock += Start;
+  }
+
+  public override void Start() {
     // Specific to World objects
     this.Type = XRItemType.World;
 

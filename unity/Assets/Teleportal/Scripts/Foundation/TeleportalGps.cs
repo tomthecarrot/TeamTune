@@ -28,11 +28,6 @@ public class TeleportalGps : MonoBehaviour {
   public double Latitude = 0.0;
 
   /// <summary>
-  /// Player's origin Y position.
-  /// </summary>
-  public double PosY = 0.0;
-
-  /// <summary>
   /// Player's origin longitude.
   /// </summary>
   public double Longitude = 0.0;
@@ -86,7 +81,7 @@ public class TeleportalGps : MonoBehaviour {
   /// <returns></returns>
   private IEnumerator HandleGPS_Desktop() {
     // Simulate real-world origin location
-    ReportOriginLoc(Latitude, PosY, Longitude); // set this in the gameobject Inspector
+    ReportOriginLoc(Latitude, Longitude); // set this in the gameobject Inspector
 
     yield return null;
   }
@@ -114,7 +109,7 @@ public class TeleportalGps : MonoBehaviour {
 
       // Create a vector containing the current local, unmodified position.
       // This is indirectly retrieved from ARKit/ARCore (via Unity camera transform).
-      Vector3 scenePosition = t.position;
+      Vector3 scenePosition = new Vector3( (float) t.position.x, 0f, (float) t.position.z);
 
       // Get the current heading angle of this player
       Heading = t.eulerAngles.y;
@@ -170,12 +165,11 @@ public class TeleportalGps : MonoBehaviour {
     // Get latest location values
     LocationLocked = true;
     Latitude = Input.location.lastData.latitude;
-    PosY = 0.0;
     Longitude = Input.location.lastData.longitude;
     Heading = Input.compass.trueHeading;
 
     // Set real-world origin location
-    ReportOriginLoc(Latitude, PosY, Longitude);
+    ReportOriginLoc(Latitude, Longitude);
 
     // If heading is negative, spin 'round the clock (360 degrees)
     if (Heading < 0) {
@@ -205,9 +199,9 @@ public class TeleportalGps : MonoBehaviour {
   /// </summary>
   /// <param name="latI">The full latitude of the initial (origin) location.</param>
   /// <param name="lonI">The full longitude of the initial (origin) location.</param>
-  public void ReportOriginLoc(double latI, double posY, double lonI) {
+  public void ReportOriginLoc(double latI, double lonI) {
     // Send to server
-    TeleportalNet.Shared.Send(TeleportalCmd.LOCATION_ORIGIN_USER, latI.ToString(), posY.ToString(), lonI.ToString());
+    TeleportalNet.Shared.Send(TeleportalCmd.LOCATION_ORIGIN_USER, latI.ToString(), lonI.ToString());
   }
 
   /// <summary>
@@ -237,10 +231,9 @@ public class TeleportalGps : MonoBehaviour {
   /// Called by Teleportal.
   /// Prepares this local scene with information about the player's origin location.
   /// </summary>
-  /// <param name="latI">The latitude of the player's location.</param>
-  /// <param name="posY">The Y coordinate of the player's location.</param>
-  /// <param name="lonI">The longitude of the player's location.</param>
-  public void LocationOrigin(string latI, string posY, string lonI) {
+  /// <param name="latI"></param>
+  /// <param name="lonI"></param>
+  public void LocationOrigin(string latI, string lonI) {
       // Location is now locked
       LocationLocked = true;
 
@@ -265,9 +258,8 @@ public class TeleportalGps : MonoBehaviour {
   /// Handles repositioning of items after a user synchronizes their location.
   /// </summary>
   /// <param name="lat">New origin latitude for this user.</param>
-  /// <param name="posY">New origin Y coordinate for this user.</param>
   /// <param name="lon">New origin longitude for this user.</param>
-  public void SyncUserLocation(string lat, string posY, string lon) {
+  public void SyncUserLocation(string lat, string lon) {
       // Reposition remaining XR Items, relative to the new GPS position
       TeleportalAr.Shared.RepositionItems();
   }
@@ -277,10 +269,9 @@ public class TeleportalGps : MonoBehaviour {
   /// Delays the calling of SyncUserLocation().
   /// </summary>
   /// <param name="lat">See SyncUserLocation()</param>
-  /// <param name="posY">See SyncUserLocation()</param>
   /// <param name="lon">See SyncUserLocation()</param>
-  public void SyncUserLocationDelayed(string lat, string posY, string lon) {
-      StartCoroutine( SyncUserLocationDelayedC(lat, posY, lon) );
+  public void SyncUserLocationDelayed(string lat, string lon) {
+      StartCoroutine( SyncUserLocationDelayedC(lat, lon) );
   }
 
   /// <summary>
@@ -288,12 +279,11 @@ public class TeleportalGps : MonoBehaviour {
   /// Delays the calling of SyncUserLocation().
   /// </summary>
   /// <param name="lat">See SyncUserLocation()</param>
-  /// <param name="posY">See SyncUserLocation()</param>
   /// <param name="lon">See SyncUserLocation()</param>
   /// <returns>Async IEnumerator</returns>
-  private IEnumerator SyncUserLocationDelayedC(string lat, string posY, string lon) {
+  private IEnumerator SyncUserLocationDelayedC(string lat, string lon) {
       yield return new WaitForSeconds(TeleportalGps.Shared.UpdateFrequency * 1.1f);
-      SyncUserLocation(lat, posY, lon);
+      SyncUserLocation(lat, lon);
   }
 
   /// <summary>

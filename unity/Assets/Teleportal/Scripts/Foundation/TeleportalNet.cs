@@ -186,6 +186,10 @@ void Start() {
 	StartCoroutine(WaitForNetwork());
 }
 
+    void OnApplicationQuit() {
+        W.Close();
+    }
+
 	public void ConnectModule(string moduleId) {
 		Send(TeleportalCmd.MODULE_CONNECT, moduleId);
 	}

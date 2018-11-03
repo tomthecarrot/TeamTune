@@ -43,11 +43,6 @@ public class XRItem: MonoBehaviour {
   /// The current latitude of this XR Item.
   /// </summary>
   public double Latitude = 0.0;
-  
-  /// <summary>
-  /// The current Y position of this XR Item.
-  /// </summary>
-  public double PosY = 0.0;
 
   /// <summary>
   /// The current longitude of this XR Item.
@@ -114,7 +109,7 @@ public class XRItem: MonoBehaviour {
   /// <summary>
   /// Standard MonoBehaviour Start() function.
   /// </summary>
-  void Start() {
+  virtual public void Start() {
     // Parent this item gameobject to the Modules container object
     transform.SetParent(Modules.Shared.transform);
     rb = GetComponent<Rigidbody>();
@@ -125,7 +120,7 @@ public class XRItem: MonoBehaviour {
     CustomItemTypeLogic();
   }
 
-  private void CustomItemTypeLogic() {
+  public virtual void CustomItemTypeLogic() {
       // unused in main class
   }
 
@@ -161,10 +156,9 @@ public class XRItem: MonoBehaviour {
   /// </summary>
   /// <param name="newLat">New absolute latitude for this Item.</param>
   /// <param name="newLon">New absolute longitude for this Item.</param>
-  public void SetLocation(double newLat, double newY, double newLon) {
+  public void SetLocation(double newLat, double newLon) {
     // Modify object variables
     Latitude = newLat;
-    PosY = newY;
     Longitude = newLon;
   }
 
@@ -199,7 +193,7 @@ public class XRItem: MonoBehaviour {
   /// </summary>
   public void Reposition() {
     // Ask the server to reposition this Item
-    TeleportalNet.Shared.Send(TeleportalCmd.ITEM_REPOSITION, this.Id, this.Latitude.ToString(), this.PosY.ToString(), this.Longitude.ToString(), this.Heading.ToString(), this.Pitch.ToString());
+    TeleportalNet.Shared.Send(TeleportalCmd.ITEM_REPOSITION, this.Id, this.Latitude.ToString(), this.Longitude.ToString(), this.Heading.ToString(), this.Pitch.ToString());
   }
   
   /// <summary>

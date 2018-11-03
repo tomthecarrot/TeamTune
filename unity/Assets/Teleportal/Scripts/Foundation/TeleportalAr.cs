@@ -167,16 +167,11 @@ public class TeleportalAr : MonoBehaviour {
   }
 
   public void CreateRealmItem(string realmId, XRWorldItem item) {
-    // Get item transform
+    // Get transform of the item GameObject
     Transform t = item.gameObject.transform;
-    float posX = t.position.x;
-    float posY = t.position.y;
-    float posZ = t.position.z;
-    float heading = t.eulerAngles.y;
-    float pitch = t.eulerAngles.x;
-
+    
     // Send to Teleportal
-    TeleportalNet.Shared.Send(TeleportalCmd.REALM_ITEM_ADD, realmId, item.Id, posX.ToString(), posY.ToString(), posZ.ToString(), heading.ToString(), pitch.ToString());
+    TeleportalNet.Shared.Send(TeleportalCmd.REALM_ITEM_ADD, realmId, item.Title, t.position.x.ToString(), t.position.z.ToString(), t.eulerAngles.y.ToString(), t.eulerAngles.x.ToString());
   }
 
   /// <summary>
@@ -187,7 +182,7 @@ public class TeleportalAr : MonoBehaviour {
   /// <param name="lon">The longitude location of the XR Item.</param>
   /// <param name="heading">The euler heading (in degrees) of the XR Item, relative to the origin normal.</param>
   /// <param name="pitch">The euler pitch rotation (in degrees) of the XR Item, relative to the origin normal.</param>
-  public void AddItem(string type, string id, double lat, double y, double lon, double heading, double pitch) {
+  public void AddItem(string type, string id, double lat, double lon, double heading, double pitch) {
     // Get prefab to use
     string path = "P_" + type; // "P" means "prefab" here
     GameObject prefab = Resources.Load(path) as GameObject;
@@ -196,7 +191,7 @@ public class TeleportalAr : MonoBehaviour {
     GameObject itemGO = Instantiate(prefab);
     XRItem item = itemGO.GetComponent<XRItem>();
     item.SetId(id);
-    item.SetLocation(lat, y, lon);
+    item.SetLocation(lat, lon);
     item.SetRotation(heading, pitch);
 
     // Reposition
@@ -212,12 +207,11 @@ public class TeleportalAr : MonoBehaviour {
   /// <param name="id">The ID of the Item to move.</param>
   /// <param name="posX">The new X coordinate (local) for the Item.</param>
   /// <param name="posY">The new Y coordinate (local) for the Item.</param>
-  /// <param name="posZ">The new Z coordinate (local) for the Item.</param>
   /// <param name="newHeading">The new heading for the Item.</param>
   /// <param name="newPitch">The new pitch for the Item.</param>
-  public void MoveItem(string id, double posX, double posY, double posZ, double newHeading, double newPitch) {
+  public void MoveItem(string id, double posX, double posY, double newHeading, double newPitch) {
     // Send new position/rotation to server
-    TeleportalNet.Shared.Send(TeleportalCmd.ITEM_MOVE, id, posX.ToString(), posY.ToString(), posZ.ToString(), newHeading.ToString(), newPitch.ToString());
+    TeleportalNet.Shared.Send(TeleportalCmd.ITEM_MOVE, id, posX.ToString(), posY.ToString(), newHeading.ToString(), newPitch.ToString());
   }
 
   /// <summary>
@@ -251,7 +245,7 @@ public class TeleportalAr : MonoBehaviour {
     t.parent = null;
 
     // Ask Teleportal to move the item
-    MoveItem(item.Id, t.position.x, t.position.y, t.position.z, t.eulerAngles.y, t.eulerAngles.x);
+    MoveItem(item.Id, t.position.x, t.position.z, t.eulerAngles.y, t.eulerAngles.x);
   }
 
   /// <summary>
@@ -313,17 +307,16 @@ public class TeleportalAr : MonoBehaviour {
   /// </summary>
   /// <param name="username">The username of the player that relocated.</param>
   /// <param name="latitude">The latitude of the player's new position.</param>
-  /// <param name="posY">The Y coordinate of the player's new position.</param>
   /// <param name="longitude">The longitude of the player's new position.</param>
-  public void UserLocated(string username, string latitude, string posY, string longitude, string heading) {
+  public void UserLocated(string username, string latitude, string longitude, string heading) {
       // Check to make sure located player is not self
       if (username != TeleportalAuth.Shared.Username)
       {
           // Discretely inform player of other player location
-          TeleportalUi.Shared.Toast(username + " located at: (" + latitude + ", " + posY + ", " + longitude);
+          TeleportalUi.Shared.Toast(username + " located at: (" + latitude + ", " + longitude);
 
           // Update player location in TeleportalAr
-          TeleportalAr.Shared.UpdatePlayerItem(username, double.Parse(latitude), double.Parse(posY), double.Parse(longitude), float.Parse(heading));
+          TeleportalAr.Shared.UpdatePlayerItem(username, double.Parse(latitude), double.Parse(longitude), float.Parse(heading));
       }
   }
 
@@ -332,9 +325,8 @@ public class TeleportalAr : MonoBehaviour {
   /// </summary>
   /// <param name="username">The username of the player to update.</param>
   /// <param name="latitude">The new latitude location of the player.</param>
-  /// <param name="posY">The Y coordinate of the player's new position.</param>
   /// <param name="longitude">The new longitude location of the player.</param>
-  public void UpdatePlayerItem(string username, double latitude, double posY, double longitude, float heading) {
+  public void UpdatePlayerItem(string username, double latitude, double longitude, float heading) {
     // Check if username already exists; create/add it if new
     if (!PlayerItems.ContainsKey(username)){
       GameObject playerGO = Instantiate(TeleportalAr.Shared._PlayerItem);
@@ -353,7 +345,7 @@ public class TeleportalAr : MonoBehaviour {
       item.SetId(username);
 
       // Update position
-      item.SetLocation(latitude, posY, longitude);
+      item.SetLocation(latitude, longitude);
 
       // Update rotation
       item.SetRotation(heading, 0);
