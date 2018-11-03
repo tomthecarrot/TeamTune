@@ -56,7 +56,6 @@ public class PlaySound : MonoBehaviour {
 
     private void changePitch() {
         Vector3 position = this.transformYEET.position;
-        Debug.Log(position.x);
         this.audio.pitch = position.x;
         this.audio.volume = position.z;
     }

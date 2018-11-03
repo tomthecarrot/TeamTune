@@ -6,6 +6,10 @@ public class HerdProject : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		TeleportalActions.Shared.OnLocationLock += OnLocationLock;
+	}
+
+	public void OnLocationLock() {
 		TeleportalProject.Shared.RegisterCommand("hold", Hold);	
 	}
 	
