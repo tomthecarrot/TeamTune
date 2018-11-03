@@ -157,11 +157,6 @@ Prefab:
       propertyPath: LightsModule.light
       value: 
       objectReference: {fileID: 1080155573}
-    - target: {fileID: 82074002965987826, guid: d7855b896b27b4cd7af294c458701158,
-        type: 2}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 3bd8f1e4ffde24007bb5ccee44eefc29, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7855b896b27b4cd7af294c458701158, type: 2}
   m_IsPrefabAsset: 0

@@ -5,13 +5,15 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class PlaySound : MonoBehaviour {
 
+    public XRPlayerItem XRI;
     private AudioSource audio;
-    private bool isSelf = true;
+    public bool isSelf = true;
     private Transform transformYEET;
 
     void Start() {
-        this.audio = gameObject.GetComponent<AudioSource>();
-        this.isSelf = (this.gameObject.transform.parent.GetComponent<XRPlayerItem>() == null);
+        this.audio = this.gameObject.GetComponent<AudioSource>();
+        this.XRI = this.gameObject.transform.parent.gameObject.GetComponent<XRPlayerItem>();
+        this.isSelf = (this.XRI == null);
         if (this.isSelf) {
             this.transformYEET = TeleportalPlayer.Current.gameObject.transform;
         } else {
@@ -21,20 +23,39 @@ public class PlaySound : MonoBehaviour {
 
     void Update()
     {
+        if (Input.GetMouseButtonDown(0) && this.isSelf) {
+            this.enableSound();
+            
+            if (this.isSelf) {
+                TeleportalProject.Shared.Send(string.Format("hold {0} 1", TeleportalAuth.Shared.Username));
+            }
+        } else if (Input.GetMouseButtonUp(0) && this.isSelf) {
+            this.disableSound();
+
+            if (this.isSelf) {
+                TeleportalProject.Shared.Send(string.Format("hold {0} 0", TeleportalAuth.Shared.Username));
+            }
+        }
+
         if (Input.GetMouseButton(0) && this.isSelf) {
             this.changePitch();
         } else if (!this.isSelf) {
             this.changePitch();
-        } else {
-            this.audio.enabled = false;
-            this.audio.loop = false;
         }
+    }
+
+    public void enableSound() {
+        this.audio.enabled = true;
+        this.audio.loop = true;
+    }
+
+    public void disableSound() {
+        this.audio.enabled = false;
+        this.audio.loop = false;
     }
 
     private void changePitch() {
         Vector3 position = this.transformYEET.position;
-        this.audio.enabled = true;
-        this.audio.loop = true;
         Debug.Log(position.x);
         this.audio.pitch = position.x;
         this.audio.volume = position.z;
