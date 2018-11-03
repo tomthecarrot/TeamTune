@@ -15,7 +15,8 @@ public class HerdProject : MonoBehaviour {
 	
 	public void Hold(List<string> args) {
 		string name = args[1];
-		bool enable = args[2] == "1";
+		float pitch = float.Parse(args[2]);
+		float volume = float.Parse(args[3]);
 
 		if (TeleportalAr.Shared.Items.ContainsKey(name)) {
 			XRItem xri = TeleportalAr.Shared.Items[name];
@@ -24,11 +25,8 @@ public class HerdProject : MonoBehaviour {
 			PlaySound script = xri.transform.GetChild(0).GetComponent<PlaySound>();
 			if (script == null) { return; }
 
-			if (enable) {
-				script.enableSound();
-			} else {
-				script.disableSound();
-			}
+			script.audio.pitch = pitch;
+			script.audio.volume = volume;
 		}
         
     }

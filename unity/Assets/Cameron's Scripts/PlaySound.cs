@@ -6,9 +6,9 @@ using UnityEngine;
 public class PlaySound : MonoBehaviour {
 
     public XRPlayerItem XRI;
-    private AudioSource audio;
+    public AudioSource audio;
     public bool isSelf = true;
-    private Transform transformYEET;
+    public Transform transformYEET;
 
     void Start() {
         this.audio = this.gameObject.GetComponent<AudioSource>();
@@ -23,35 +23,18 @@ public class PlaySound : MonoBehaviour {
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && this.isSelf) {
-            this.enableSound();
-            
-            if (this.isSelf) {
-                TeleportalProject.Shared.Send(string.Format("hold {0} 1", TeleportalAuth.Shared.Username));
-            }
-        } else if (Input.GetMouseButtonUp(0) && this.isSelf) {
-            this.disableSound();
-
-            if (this.isSelf) {
-                TeleportalProject.Shared.Send(string.Format("hold {0} 0", TeleportalAuth.Shared.Username));
-            }
+        if (Input.GetMouseButtonUp(0) && this.isSelf) {
+            this.audio.volume = 0f;
+            this.sendUpdate();
         }
-
-        if (Input.GetMouseButton(0) && this.isSelf) {
+        else if (Input.GetMouseButton(0) && this.isSelf) {
             this.changePitch();
-        } else if (!this.isSelf) {
-            this.changePitch();
+            this.sendUpdate();
         }
     }
 
-    public void enableSound() {
-        this.audio.enabled = true;
-        this.audio.loop = true;
-    }
-
-    public void disableSound() {
-        this.audio.enabled = false;
-        this.audio.loop = false;
+    private void sendUpdate() {
+        TeleportalProject.Shared.Send(string.Format("hold {0} {1} {2}", TeleportalAuth.Shared.Username, this.audio.pitch, this.audio.volume));
     }
 
     private void changePitch() {
