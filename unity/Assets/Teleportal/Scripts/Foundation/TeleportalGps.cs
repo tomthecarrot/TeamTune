@@ -164,8 +164,9 @@ public class TeleportalGps : MonoBehaviour {
 
     // Get latest location values
     LocationLocked = true;
-    Latitude = Input.location.lastData.latitude;
-    Longitude = Input.location.lastData.longitude;
+    // TODO REMOVED HACKATHON
+    // Latitude = Input.location.lastData.latitude;
+    // Longitude = Input.location.lastData.longitude;
     Heading = Input.compass.trueHeading;
 
     // Set real-world origin location
