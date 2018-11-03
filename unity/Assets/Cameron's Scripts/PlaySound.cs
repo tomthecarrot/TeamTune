@@ -8,7 +8,7 @@ public class PlaySound : MonoBehaviour {
     public XRPlayerItem XRI;
     public AudioSource audio;
     public bool isSelf = true;
-    public int networkSampleRate = 5;
+    public float networkSampleRate = 5f;
     public Transform transformYEET;
 
     void Start() {
