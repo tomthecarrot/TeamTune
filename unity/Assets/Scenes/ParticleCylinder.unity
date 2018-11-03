@@ -157,6 +157,11 @@ Prefab:
       propertyPath: LightsModule.light
       value: 
       objectReference: {fileID: 1080155573}
+    - target: {fileID: 23466103971275626, guid: d7855b896b27b4cd7af294c458701158,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7855b896b27b4cd7af294c458701158, type: 2}
   m_IsPrefabAsset: 0
