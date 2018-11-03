@@ -207,6 +207,11 @@ Prefab:
       propertyPath: Longitude
       value: -86.805816
       objectReference: {fileID: 0}
+    - target: {fileID: 114547373338336226, guid: 66def328e562d47ac9d1dcd1d92429e6,
+        type: 2}
+      propertyPath: UseDummyAccount
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66def328e562d47ac9d1dcd1d92429e6, type: 2}
   m_IsPrefabAsset: 0
