@@ -209,6 +209,16 @@ Prefab:
       propertyPath: m_Name
       value: Main Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 114319954767127160, guid: 66def328e562d47ac9d1dcd1d92429e6,
+        type: 2}
+      propertyPath: Latitude
+      value: 36.143113
+      objectReference: {fileID: 0}
+    - target: {fileID: 114319954767127160, guid: 66def328e562d47ac9d1dcd1d92429e6,
+        type: 2}
+      propertyPath: Longitude
+      value: -86.805816
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66def328e562d47ac9d1dcd1d92429e6, type: 2}
   m_IsPrefabAsset: 0
