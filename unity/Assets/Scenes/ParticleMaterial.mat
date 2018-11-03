@@ -8,8 +8,8 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: ParticleMaterial
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: _ALPHABLEND_ON _EMISSION
-  m_LightmapFlags: 1
+  m_ShaderKeywords: _ALPHABLEND_ON
+  m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 3000
@@ -73,5 +73,5 @@ Material:
     - _UVSec: 0
     - _ZWrite: 0
     m_Colors:
-    - _Color: {r: 0.3860004, g: 0.37254906, b: 0.94509804, a: 1}
+    - _Color: {r: 0.37254906, g: 0.91228604, b: 0.94509804, a: 1}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
