@@ -304,7 +304,7 @@ void Start() {
 			// Send to server via WebSockets
 			W.SendString(msg);
 		}
-		Debug.Log("SEND: " + msg);
+		 //Debug.Log("SEND: " + msg);
 	}
 
 	/// <summary>
@@ -356,7 +356,7 @@ void Start() {
 				} catch (Exception e) {
 					Debug.Log("NET parse error: " + e);
 				}
-				Debug.Log("RECV: " + msg);
+				// Debug.Log("RECV: " + msg);
 			}
 
 			// Handle error
