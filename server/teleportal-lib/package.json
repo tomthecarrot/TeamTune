@@ -1,0 +1,13 @@
+{
+  "name": "teleportal-module-example",
+  "author": "Thomas Suarez",
+  "copyright": "2018 WiTag Inc",
+  "version": "0.0.2",
+  "private": true,
+  "scripts": {
+    "start": "node app"
+  },
+  "dependencies": {
+    "ws": "^5.2.2"
+  }
+}
