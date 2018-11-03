@@ -50,7 +50,12 @@ public class PlaySound : MonoBehaviour {
     }
 
     private void changePitch() {
-        Vector3 position = this.transformYEET.position;
+        Vector3 position;
+        if (this.isSelf) {
+            position = this.transformYEET.position;
+        } else {
+            position = new Vector3((float)(this.XRI.Longitude - -86.805816), 0f, (float)(this.XRI.Latitude - 36.143113));
+        }
         this.audio.pitch = position.x / 5;
         this.zVal = Mathf.Abs(position.z);
         mixer.audioMixer.SetFloat("MyExposedParam 1", this.zVal * 10f);
