@@ -200,9 +200,19 @@ Prefab:
       propertyPath: mode
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114168873689236496, guid: 66def328e562d47ac9d1dcd1d92429e6,
+        type: 2}
+      propertyPath: m_camera
+      value: 
+      objectReference: {fileID: 1398270875}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66def328e562d47ac9d1dcd1d92429e6, type: 2}
   m_IsPrefabAsset: 0
+--- !u!20 &1398270875 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 20178436902707266, guid: 66def328e562d47ac9d1dcd1d92429e6,
+    type: 2}
+  m_PrefabInternal: {fileID: 1398270874}
 --- !u!43 &1796663684
 Mesh:
   m_ObjectHideFlags: 0
