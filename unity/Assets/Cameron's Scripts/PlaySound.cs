@@ -42,21 +42,28 @@ public class PlaySound : MonoBehaviour {
             this.audio.volume = 0f;
         } else if (Input.GetMouseButton(0) && this.isSelf) {
             this.audio.volume = 1f;
-            switch (TeleportalAuth.Shared.Username)
-            {
-                case "snare":
-                    changeDrums();
-                    Debug.Log("fuck this snare");
-                    break;
-                case "lead":
-                    changeLead();
-                    Debug.Log("fuck this lead");
-                    break;
-                default:
-                    changePitch();
-                    Debug.Log("fuck this other");
-                    break;
-            }
+            this.changeInstrument(TeleportalAuth.Shared.Username);
+        } else if (!this.isSelf) {
+            Debug.Log(this.XRI.Title);
+            this.changeInstrument(this.XRI.Title);
+        }
+    }
+
+    public void changeInstrument(string username) {
+        switch (username)
+        {
+            case "snare":
+                changeDrums();
+                Debug.Log("fuck this snare");
+                break;
+            case "lead":
+                changeLead();
+                Debug.Log("fuck this lead");
+                break;
+            default:
+                changePitch();
+                Debug.Log("fuck this other");
+                break;
         }
     }
 
