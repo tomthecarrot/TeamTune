@@ -92,7 +92,7 @@ Transform:
   m_LocalScale: {x: 0.024, y: 0.026999999, z: 0.8}
   m_Children: []
   m_Father: {fileID: 4534327661505462}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!4 &4534327661505462
 Transform:
@@ -104,9 +104,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 4852854578429528}
   - {fileID: 4021156057291234}
   - {fileID: 4663287395341744}
-  - {fileID: 4852854578429528}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -121,7 +121,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4534327661505462}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4852854578429528
 Transform:
@@ -134,7 +134,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4534327661505462}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &23448401250410168
 MeshRenderer:
@@ -234,9 +234,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: f40c1d627dcb2466b809da4c475fa942, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 3bd8f1e4ffde24007bb5ccee44eefc29, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -352,6 +352,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 947a9720ac83648c4a006bd2e2922475, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  XRI: {fileID: 0}
+  isSelf: 1
 --- !u!114 &114384551314684488
 MonoBehaviour:
   m_ObjectHideFlags: 1

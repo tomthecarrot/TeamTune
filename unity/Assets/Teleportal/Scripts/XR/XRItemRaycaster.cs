@@ -97,6 +97,10 @@ public class XRItemRaycaster : MonoBehaviour
 
 					// Set the Reactive Reticle to FireMiss (blue)
 					TeleportalUi.Shared.SetReticle(ReactiveReticle.ReticleType.FireMiss);
+
+					if (Input.GetKeyDown(KeyCode.T)) {
+						TeleportalGps.Shared.HighFiveNow(PlayerFocus);
+					}
 				}
 
                 // If this item was an inventory item...
