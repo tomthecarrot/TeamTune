@@ -29,22 +29,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1869515094399752
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4592418644960008}
-  - component: {fileID: 114371127329334172}
-  m_Layer: 0
-  m_Name: Virtual World
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &1921614828998160
 GameObject:
   m_ObjectHideFlags: 0
@@ -61,19 +45,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4592418644960008
-Transform:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1869515094399752}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4931319784253330}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4881195224524960
 Transform:
   m_ObjectHideFlags: 1
@@ -98,7 +69,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4881195224524960}
-  - {fileID: 4592418644960008}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -149,18 +119,6 @@ AudioListener:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1278475485269956}
   m_Enabled: 1
---- !u!114 &114371127329334172
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1869515094399752}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59bd07b5b97dd4cd49b2ba5d3c0c60af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DefaultToAR: 0
 --- !u!114 &114374907198463900
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -172,8 +130,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bbadb45f24f34bf78a79382560b2883, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ApiKey: 1234567890
-  Id: demo
+  ApiKey: TslmoAjczv
+  Id: vandyhacks-theherd
 --- !u!114 &114614181178316404
 MonoBehaviour:
   m_ObjectHideFlags: 1
