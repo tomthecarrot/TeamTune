@@ -28,6 +28,7 @@ public class HerdProject : MonoBehaviour {
 
 			script.audio.pitch = pitch;
 			script.audio.volume = volume;
+			script.zVal = Mathf.Abs(zVal);
 			script.mixer.audioMixer.SetFloat("MyExposedParam 1", script.zVal * 10f);
         	script.mixer.audioMixer.SetFloat("MyExposedParam 4", script.zVal * 20f);
 		}
