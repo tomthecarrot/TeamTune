@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 [RequireComponent(typeof(AudioSource))]
 public class PlaySound : MonoBehaviour {
@@ -8,6 +9,8 @@ public class PlaySound : MonoBehaviour {
     private AudioSource audio;
     private bool isSelf = true;
     private Transform transformYEET;
+    public AudioMixerGroup mixer;
+
 
     void Start() {
         this.audio = gameObject.GetComponent<AudioSource>();
@@ -36,7 +39,11 @@ public class PlaySound : MonoBehaviour {
         this.audio.enabled = true;
         this.audio.loop = true;
         Debug.Log(position.x);
-        this.audio.pitch = position.x;
-        this.audio.volume = position.z;
+        this.audio.pitch = position.x/5;
+        mixer.audioMixer.SetFloat("MyExposedParam 1", position.y * 10f);
+        mixer.audioMixer.SetFloat("MyExposedParam 4", position.y * 20f);
+    }
+
+    private void mute(){
     }
 }
