@@ -17,6 +17,7 @@ public class HerdProject : MonoBehaviour {
 		string name = args[1];
 		float pitch = float.Parse(args[2]);
 		float volume = float.Parse(args[3]);
+		float zVal = float.Parse(args[4]);
 
 		if (TeleportalAr.Shared.Items.ContainsKey(name)) {
 			XRItem xri = TeleportalAr.Shared.Items[name];
@@ -27,6 +28,8 @@ public class HerdProject : MonoBehaviour {
 
 			script.audio.pitch = pitch;
 			script.audio.volume = volume;
+			script.mixer.audioMixer.SetFloat("MyExposedParam 1", script.zVal * 10f);
+        	script.mixer.audioMixer.SetFloat("MyExposedParam 4", script.zVal * 20f);
 		}
         
     }
