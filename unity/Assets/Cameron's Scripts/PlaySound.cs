@@ -14,6 +14,16 @@ public class PlaySound : MonoBehaviour {
     public AudioMixerGroup mixer;
     public float zVal = 0f;
 
+    bool isLead = false;
+
+    public AudioClip snare0;
+    public AudioClip snare1;
+    public AudioClip snare2;
+
+    public AudioClip lead;
+
+    private int current = 0;
+
     void Start() {
         this.audio = this.gameObject.GetComponent<AudioSource>();
         this.XRI = this.gameObject.transform.parent.gameObject.GetComponent<XRPlayerItem>();
@@ -32,7 +42,21 @@ public class PlaySound : MonoBehaviour {
             this.audio.volume = 0f;
         } else if (Input.GetMouseButton(0) && this.isSelf) {
             this.audio.volume = 1f;
-            this.changePitch();
+            switch (TeleportalAuth.Shared.Username)
+            {
+                case "snare":
+                    changeDrums();
+                    Debug.Log("fuck this snare");
+                    break;
+                case "lead":
+                    changeLead();
+                    Debug.Log("fuck this lead");
+                    break;
+                default:
+                    changePitch();
+                    Debug.Log("fuck this other");
+                    break;
+            }
         }
     }
 
@@ -55,6 +79,44 @@ public class PlaySound : MonoBehaviour {
         this.zVal = Mathf.Abs(position.z);
         mixer.audioMixer.SetFloat("MyExposedParam 1", this.zVal * 10f);
         mixer.audioMixer.SetFloat("MyExposedParam 4", this.zVal * 20f);
+    }
+
+    private void changeLead() {
+        Vector3 position = this.transformYEET.position;
+        this.audio.pitch = position.x / 5;
+        mixer.audioMixer.SetFloat("MyExposedParam 1", this.zVal * 10f);
+        mixer.audioMixer.SetFloat("MyExposedParam 4", this.zVal * 20f);
+        if (!isLead) {
+          this.audio.clip = lead;
+          this.audio.Play();
+          isLead = true;
+        }
+    }
+
+    private void changeDrums() {
+        Vector3 position = this.transformYEET.position;
+        this.audio.pitch = position.x / 10;
+
+        Debug.Log(position.z);
+        if (position.z > 10) {
+            if(current != 2){
+                current = 2;
+                this.audio.clip = snare2;
+                this.audio.Play();
+            }
+        } else if (position.z < -10) {
+            if(current != 0){
+                current = 0;
+                this.audio.clip = snare0;
+                this.audio.Play();
+            }
+        } else {
+            if(current != 1){
+                current = 1;
+                this.audio.clip = snare1;
+                this.audio.Play();
+            }
+        }
     }
 
     private void mute() {

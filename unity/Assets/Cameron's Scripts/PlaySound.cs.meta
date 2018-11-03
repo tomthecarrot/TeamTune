@@ -3,7 +3,14 @@ guid: 947a9720ac83648c4a006bd2e2922475
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - XRI: {instanceID: 0}
+  - audio: {instanceID: 0}
+  - transformYEET: {instanceID: 0}
+  - mixer: {fileID: 24348630, guid: 95096f29d1ddcd647ace66f3641d42f5, type: 2}
+  - snare0: {fileID: 8300000, guid: 0f55e0c568ff245e4a46ed3bb23c6de3, type: 3}
+  - snare1: {fileID: 8300000, guid: 172dd04b64e234d6b88c3593d4460d8c, type: 3}
+  - snare2: {fileID: 8300000, guid: f40c1d627dcb2466b809da4c475fa942, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

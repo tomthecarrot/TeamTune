@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731704, g: 0.13414726, b: 0.1210787, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311918, g: 0.38073993, b: 0.35872695, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -127,8 +127,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1f4bab7923d09467ea5d5dec53f5b4c7, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &198196012
 GameObject:
   m_ObjectHideFlags: 0
@@ -167,8 +167,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 83591413dfa0e4116b87c80de09dc461, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   sceneNames:
   - VirtualWorld
   index: 0
@@ -308,11 +308,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 947a9720ac83648c4a006bd2e2922475, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   XRI: {fileID: 0}
+  audio: {fileID: 0}
   isSelf: 1
+  networkSampleRate: 5
+  transformYEET: {fileID: 0}
   mixer: {fileID: 24348630, guid: 95096f29d1ddcd647ace66f3641d42f5, type: 2}
+  zVal: 0
+  snare0: {fileID: 8300000, guid: 0f55e0c568ff245e4a46ed3bb23c6de3, type: 3}
+  snare1: {fileID: 8300000, guid: 172dd04b64e234d6b88c3593d4460d8c, type: 3}
+  snare2: {fileID: 8300000, guid: b64f4e89c842e4803ae558a020e8bbff, type: 3}
+  lead: {fileID: 8300000, guid: 04d4929587d6745879f379776e86b701, type: 3}
 --- !u!1001 &1066245207
 Prefab:
   m_ObjectHideFlags: 0
