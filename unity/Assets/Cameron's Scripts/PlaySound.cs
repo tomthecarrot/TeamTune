@@ -8,6 +8,7 @@ public class PlaySound : MonoBehaviour {
     public XRPlayerItem XRI;
     public AudioSource audio;
     public bool isSelf = true;
+    public int networkSampleRate = 5;
     public Transform transformYEET;
 
     void Start() {
@@ -19,17 +20,24 @@ public class PlaySound : MonoBehaviour {
         } else {
             this.transformYEET = this.gameObject.transform.parent; // XR Player Item
         }
+        StartCoroutine(this.sendUpdatesC());
     }
 
     void Update()
     {
         if (Input.GetMouseButtonUp(0) && this.isSelf) {
             this.audio.volume = 0f;
-            this.sendUpdate();
-        }
-        else if (Input.GetMouseButton(0) && this.isSelf) {
+        } else if (Input.GetMouseButton(0) && this.isSelf) {
             this.changePitch();
-            this.sendUpdate();
+        }
+    }
+
+    private IEnumerator sendUpdatesC() {
+        while (true) {
+            if (this.isSelf) {
+                this.sendUpdate();
+            }
+            yield return new WaitForSeconds(1 / this.networkSampleRate);
         }
     }
 
