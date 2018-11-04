@@ -361,7 +361,7 @@ MonoBehaviour:
   zVal: 0
   snare0: {fileID: 8300000, guid: 0f55e0c568ff245e4a46ed3bb23c6de3, type: 3}
   snare1: {fileID: 8300000, guid: 172dd04b64e234d6b88c3593d4460d8c, type: 3}
-  snare2: {fileID: 8300000, guid: b64f4e89c842e4803ae558a020e8bbff, type: 3}
+  snare2: {fileID: 8300000, guid: f40c1d627dcb2466b809da4c475fa942, type: 3}
   lead: {fileID: 8300000, guid: 04d4929587d6745879f379776e86b701, type: 3}
 --- !u!114 &114384551314684488
 MonoBehaviour:
