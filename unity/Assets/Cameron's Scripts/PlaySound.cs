@@ -80,7 +80,7 @@ public class PlaySound : MonoBehaviour {
         } else {
             position = new Vector3((float)(this.XRI.Longitude - -86.805816), 0f, (float)(this.XRI.Latitude - 36.143113));
         }
-        this.audio.pitch = position.x / 5;
+        this.audio.pitch = (position.x / 2) - ((position.x / 2) % 0.5f);
         this.zVal = Mathf.Abs(position.z);
         mixer.audioMixer.SetFloat("MyExposedParam 1", this.zVal * 10f);
         mixer.audioMixer.SetFloat("MyExposedParam 4", this.zVal * 20f);
@@ -88,7 +88,7 @@ public class PlaySound : MonoBehaviour {
 
     private void changeLead() {
         Vector3 position = this.transformYEET.position;
-        this.audio.pitch = position.x / 5;
+        this.audio.pitch = (position.x / 2) - ((position.x / 2) % 0.5f);
         mixer.audioMixer.SetFloat("MyExposedParam 1", this.zVal * 10f);
         mixer.audioMixer.SetFloat("MyExposedParam 4", this.zVal * 20f);
         if (!isLead) {
@@ -100,7 +100,7 @@ public class PlaySound : MonoBehaviour {
 
     private void changeDrums() {
         Vector3 position = this.transformYEET.position;
-        this.audio.pitch = position.x / 10;
+        this.audio.pitch = (position.x / 5) - ((position.x / 5) % 0.5f);
 
         Debug.Log(position.z);
         if (position.z > 10) {
