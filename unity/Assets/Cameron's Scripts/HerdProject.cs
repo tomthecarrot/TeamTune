@@ -29,9 +29,28 @@ public class HerdProject : MonoBehaviour {
 			script.audio.pitch = pitch;
 			script.audio.volume = volume;
 			script.zVal = Mathf.Abs(zVal);
-			script.mixer.audioMixer.SetFloat("MyExposedParam 1", script.zVal * 10f);
-        	script.mixer.audioMixer.SetFloat("MyExposedParam 4", script.zVal * 20f);
-		}
+
+			if (script.mixer != null) {
+				script.mixer.audioMixer.SetFloat("MyExposedParam 1", script.zVal * 10f);
+				script.mixer.audioMixer.SetFloat("MyExposedParam 4", script.zVal * 20f);
+			}
+
+			switch (name)
+            {
+                case "snare":
+                    script.changeDrums(false);
+                    Debug.Log("f*** this snare");
+                    break;
+                case "lead":
+                    script.changeLead(false);
+                    Debug.Log("f*** this lead");
+                    break;
+                default:
+                    script.changePitch(false);
+                    Debug.Log("f*** this other");
+                    break;
+            }
+		} 
         
     }
 }

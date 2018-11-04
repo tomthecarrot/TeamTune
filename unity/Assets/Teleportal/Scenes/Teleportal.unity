@@ -460,6 +460,56 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1297064985085474, guid: f03aeca00c9734e93bd4027d0fb6beec, type: 2}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114172997426810232, guid: f03aeca00c9734e93bd4027d0fb6beec,
+        type: 2}
+      propertyPath: m_Text
+      value: 'Created @ VandyHacks
+
+        Powered by Teleportal'
+      objectReference: {fileID: 0}
+    - target: {fileID: 114172997426810232, guid: f03aeca00c9734e93bd4027d0fb6beec,
+        type: 2}
+      propertyPath: m_FontData.m_FontSize
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 114172997426810232, guid: f03aeca00c9734e93bd4027d0fb6beec,
+        type: 2}
+      propertyPath: m_FontData.m_Alignment
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 224375699024501454, guid: f03aeca00c9734e93bd4027d0fb6beec,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224375699024501454, guid: f03aeca00c9734e93bd4027d0fb6beec,
+        type: 2}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224375699024501454, guid: f03aeca00c9734e93bd4027d0fb6beec,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224375699024501454, guid: f03aeca00c9734e93bd4027d0fb6beec,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 224375699024501454, guid: f03aeca00c9734e93bd4027d0fb6beec,
+        type: 2}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1494447723282572, guid: f03aeca00c9734e93bd4027d0fb6beec, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1790118515932192, guid: f03aeca00c9734e93bd4027d0fb6beec, type: 2}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
