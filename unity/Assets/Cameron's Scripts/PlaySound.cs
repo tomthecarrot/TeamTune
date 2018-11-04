@@ -16,6 +16,8 @@ public class PlaySound : MonoBehaviour {
 
     bool isLead = false;
 
+    bool canPlay = false;
+
     public AudioClip snare0;
     public AudioClip snare1;
     public AudioClip snare2;
@@ -24,7 +26,27 @@ public class PlaySound : MonoBehaviour {
 
     private int current = 0;
 
+
+    public double bpm = 140.0F;
+    public float gain = 0.5F;
+    public int signatureHi = 4;
+    public int signatureLo = 4;
+    private double nextTick = 0.0F;
+    private float amp = 0.0F;
+    private float phase = 0.0F;
+    private double sampleRate = 0.0F;
+    private int accent;
+    private bool running = false;
+
+
     void Start() {
+
+        accent = signatureHi;
+        double startTick = AudioSettings.dspTime;
+        sampleRate = AudioSettings.outputSampleRate;
+        nextTick = startTick * sampleRate;
+        running = true;
+
         this.audio = this.gameObject.GetComponent<AudioSource>();
         this.XRI = this.gameObject.transform.parent.gameObject.GetComponent<XRPlayerItem>();
         this.isSelf = (this.XRI == null);
@@ -46,6 +68,43 @@ public class PlaySound : MonoBehaviour {
         } else if (!this.isSelf) {
             Debug.Log(this.XRI.Title);
             this.changeInstrument(this.XRI.Title);
+        }
+    }
+
+    void OnAudioFilterRead(float[] data, int channels)
+    {
+        if (!running)
+            return;
+        if (canPlay)
+        {
+            double samplesPerTick = sampleRate * 60.0F / bpm * 4.0F / signatureLo;
+            double sample = AudioSettings.dspTime * sampleRate;
+            int dataLen = data.Length / channels;
+            int n = 0;
+            while (n < dataLen)
+            {
+                float x = gain * amp * Mathf.Sin(phase);
+                int i = 0;
+                while (i < channels)
+                {
+                    data[n * channels + i] += x;
+                    i++;
+                }
+                while (sample + n >= nextTick)
+                {
+                    nextTick += samplesPerTick;
+                    amp = 1.0F;
+                    if (++accent > signatureHi)
+                    {
+                        accent = 1;
+                        amp *= 2.0F;
+                    }
+                }
+                this.audio.Play();
+                phase += amp * 0.3F;
+                amp *= 0.993F;
+                n++;
+            }
         }
     }
 
@@ -87,7 +146,7 @@ public class PlaySound : MonoBehaviour {
         } else {
             position = new Vector3((float)(this.XRI.Longitude - -86.805816), 0f, (float)(this.XRI.Latitude - 36.143113));
         }
-        this.audio.pitch = position.x / 5;
+        this.audio.pitch = (position.x / 2) - ((position.x / 2) % 0.5f);
         this.zVal = Mathf.Abs(position.z);
         mixer.audioMixer.SetFloat("MyExposedParam 1", this.zVal * 10f);
         mixer.audioMixer.SetFloat("MyExposedParam 4", this.zVal * 20f);
@@ -95,38 +154,38 @@ public class PlaySound : MonoBehaviour {
 
     private void changeLead() {
         Vector3 position = this.transformYEET.position;
-        this.audio.pitch = position.x / 5;
+        this.audio.pitch = (position.x / 2) - ((position.x / 2) % 0.5f);
         mixer.audioMixer.SetFloat("MyExposedParam 1", this.zVal * 10f);
         mixer.audioMixer.SetFloat("MyExposedParam 4", this.zVal * 20f);
         if (!isLead) {
           this.audio.clip = lead;
-          this.audio.Play();
+            canPlay = true;
           isLead = true;
         }
     }
 
     private void changeDrums() {
         Vector3 position = this.transformYEET.position;
-        this.audio.pitch = position.x / 10;
+        this.audio.pitch = (position.x / 5) - ((position.x / 5) % 0.5f);
 
         Debug.Log(position.z);
         if (position.z > 10) {
             if(current != 2){
                 current = 2;
                 this.audio.clip = snare2;
-                this.audio.Play();
+                canPlay = true;
             }
         } else if (position.z < -10) {
             if(current != 0){
                 current = 0;
                 this.audio.clip = snare0;
-                this.audio.Play();
+                canPlay = true;
             }
         } else {
             if(current != 1){
                 current = 1;
                 this.audio.clip = snare1;
-                this.audio.Play();
+                canPlay = true;
             }
         }
     }
