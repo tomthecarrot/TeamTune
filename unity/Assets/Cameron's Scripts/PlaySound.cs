@@ -25,6 +25,7 @@ public class PlaySound : MonoBehaviour {
     private int current = 0;
 
     void Start() {
+        // this.mixer = (AudioMixerGroup) GameObject.Find("AudioMixerControl");
         this.audio = this.gameObject.GetComponent<AudioSource>();
         this.XRI = this.gameObject.transform.parent.gameObject.GetComponent<XRPlayerItem>();
         this.isSelf = (this.XRI == null);
@@ -45,15 +46,15 @@ public class PlaySound : MonoBehaviour {
             switch (TeleportalAuth.Shared.Username)
             {
                 case "snare":
-                    changeDrums();
+                    changeDrums(true);
                     Debug.Log("fuck this snare");
                     break;
                 case "lead":
-                    changeLead();
+                    changeLead(true);
                     Debug.Log("fuck this lead");
                     break;
                 default:
-                    changePitch();
+                    changePitch(true);
                     Debug.Log("fuck this other");
                     break;
             }
@@ -73,24 +74,23 @@ public class PlaySound : MonoBehaviour {
         TeleportalProject.Shared.Send(string.Format("hold {0} {1} {2} {3}", TeleportalAuth.Shared.Username, this.audio.pitch, this.audio.volume, this.zVal));
     }
 
-    private void changePitch() {
-        Vector3 position;
-        if (this.isSelf) {
-            position = this.transformYEET.position;
-        } else {
-            position = new Vector3((float)(this.XRI.Longitude - -86.805816), 0f, (float)(this.XRI.Latitude - 36.143113));
+    public void changePitch(bool sound) {
+        if (sound) {
+            Vector3 position = this.getPosition();
+            this.audio.pitch = (position.x / 2) - ((position.x / 2) % 0.5f);
+            this.zVal = Mathf.Abs(position.z);
+            mixer.audioMixer.SetFloat("MyExposedParam 1", this.zVal * 10f);
+            mixer.audioMixer.SetFloat("MyExposedParam 4", this.zVal * 20f);
         }
-        this.audio.pitch = (position.x / 2) - ((position.x / 2) % 0.5f);
-        this.zVal = Mathf.Abs(position.z);
-        mixer.audioMixer.SetFloat("MyExposedParam 1", this.zVal * 10f);
-        mixer.audioMixer.SetFloat("MyExposedParam 4", this.zVal * 20f);
     }
 
-    private void changeLead() {
-        Vector3 position = this.transformYEET.position;
-        this.audio.pitch = (position.x / 2) - ((position.x / 2) % 0.5f);
-        mixer.audioMixer.SetFloat("MyExposedParam 1", this.zVal * 10f);
-        mixer.audioMixer.SetFloat("MyExposedParam 4", this.zVal * 20f);
+    public void changeLead(bool sound) {
+        if (sound) {
+            Vector3 position = this.getPosition();
+            this.audio.pitch = (position.x / 2) - ((position.x / 2) % 0.5f);
+            mixer.audioMixer.SetFloat("MyExposedParam 1", this.zVal * 10f);
+            mixer.audioMixer.SetFloat("MyExposedParam 4", this.zVal * 20f);
+        }
         if (!isLead) {
           this.audio.clip = lead;
           this.audio.Play();
@@ -98,29 +98,39 @@ public class PlaySound : MonoBehaviour {
         }
     }
 
-    private void changeDrums() {
-        Vector3 position = this.transformYEET.position;
-        this.audio.pitch = (position.x / 5) - ((position.x / 5) % 0.5f);
+    public void changeDrums(bool sound) {
+        Vector3 position = this.getPosition();
+        
+        if (sound) {
+            this.audio.pitch = (position.x / 5) - ((position.x / 5) % 0.5f);
+        }
 
-        Debug.Log(position.z);
         if (position.z > 10) {
-            if(current != 2){
+            if (current != 2){
                 current = 2;
                 this.audio.clip = snare2;
                 this.audio.Play();
             }
         } else if (position.z < -10) {
-            if(current != 0){
+            if (current != 0){
                 current = 0;
                 this.audio.clip = snare0;
                 this.audio.Play();
             }
         } else {
-            if(current != 1){
+            if (current != 1){
                 current = 1;
                 this.audio.clip = snare1;
                 this.audio.Play();
             }
+        }
+    }
+
+    private Vector3 getPosition() {
+        if (this.isSelf) {
+            return this.transformYEET.position;
+        } else {
+            return new Vector3((float)(this.XRI.Longitude - -86.805816), 0f, (float)(this.XRI.Latitude - 36.143113));
         }
     }
 
